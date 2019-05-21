@@ -9,6 +9,7 @@ Process* generate_process(int pid_given)
 
 	newp->pid = pid_given;
 	newp->arrival = rand() % (MAX_TIME-20);
+	newp->fst_arrival = newp->arrival;
 	newp->cpu_burst = rand() % MAX_CPU_BURST + 1;
 	newp->priority = rand() % MAX_PRIORITY;
 	newp->io_burst = 0;//rand() % MAX_IO_BURST;

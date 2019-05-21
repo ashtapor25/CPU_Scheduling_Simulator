@@ -19,4 +19,6 @@ void insert_queue(Queue* myqueue, Process* proc, int(*cmp)(Process*, Process*));
 Process* pop_queue(Queue* myqueue, int(*cmp)(Process*, Process*));
 Process* top_queue(Queue* myqueue);
 
+Queue* clone_queue(Queue* myqueue);
+
 #endif

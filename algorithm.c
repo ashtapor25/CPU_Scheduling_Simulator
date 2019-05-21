@@ -21,7 +21,7 @@ int* FCFS(Queue* JQp)
         {
             Process* temp = pop_queue(JQp, arrival_cmp);
             insert_queue(&RQ, temp, arrival_cmp);
-            printf("pid: %d inserted into RQ\n", temp->pid);
+            //printf("pid: %d inserted into RQ\n", temp->pid);
         }
 
         // < RQ -> Running >
@@ -76,7 +76,7 @@ int* FCFS(Queue* JQp)
                 running = NULL;
             }
 
-            else if(clock - (running->exec_start) == (running->io_start))
+            else if( (running->io_burst > 0) && (clock - (running->exec_start) == (running->io_start)) )
             {
                 insert_queue(&WQ, running, arrival_cmp);
                 running = NULL;
@@ -108,7 +108,7 @@ int* SJF(Queue* JQp, int preemptive)
         {
             Process* temp = pop_queue(JQp, arrival_cmp);
             insert_queue(&RQ, temp, cpu_cmp);
-            printf("pid: %d inserted into RQ\n", temp->pid);
+            //printf("pid: %d inserted into RQ\n", temp->pid);
         }
 
         // < RQ -> Running >
@@ -134,6 +134,8 @@ int* SJF(Queue* JQp, int preemptive)
             {
                 insert_queue(&RQ, running, cpu_cmp);
                 running = pop_queue(&RQ, cpu_cmp);
+                if(running->exec_start == -1)
+                    running->exec_start = clock;
             }
         }
         
@@ -204,7 +206,7 @@ int* Priority(Queue* JQp, int preemptive)
         {
             Process* temp = pop_queue(JQp, arrival_cmp);
             insert_queue(&RQ, temp, priority_cmp);
-            printf("pid: %d inserted into RQ\n", temp->pid);
+            //printf("pid: %d inserted into RQ\n", temp->pid);
         }
 
         // < RQ -> Running >
@@ -230,6 +232,8 @@ int* Priority(Queue* JQp, int preemptive)
             {
                 insert_queue(&RQ, running, priority_cmp);
                 running = pop_queue(&RQ, priority_cmp);
+                if(running->exec_start == -1)
+                    running->exec_start = clock;
             }
         }
         
@@ -300,7 +304,7 @@ int* RR(Queue* JQp, int quantum)
         {
             Process* temp = pop_queue(JQp, arrival_cmp);
             insert_queue(&RQ, temp, arrival_cmp);
-            printf("pid: %d inserted into RQ\n", temp->pid);
+            //printf("pid: %d inserted into RQ\n", temp->pid);
         }
 
         // < RQ -> Running >

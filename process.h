@@ -24,6 +24,7 @@ typedef struct process
 	int io_remaining;
 
 	// parameters for evaluation
+	int fst_arrival;
 	int exec_start;
 	int exec_end;
 } Process;

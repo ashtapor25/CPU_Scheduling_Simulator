@@ -2,6 +2,7 @@
 #include "process.h"
 #include "queue.h"
 #include "algorithm.h"
+#include "evaluation.h"
 
 Queue JQ;
 
@@ -28,13 +29,77 @@ int main()
         printf("\n");
     }
 
-    int* res = RR(&JQ, 2);
+    printf("cloning queues\n");
+    Queue *JQ1, *JQ2, *JQ3, *JQ4, *JQ5, *JQ6;
+    JQ1 = clone_queue(&JQ);
+    JQ2 = clone_queue(&JQ);
+    JQ3 = clone_queue(&JQ);
+    JQ4 = clone_queue(&JQ);
+    JQ5 = clone_queue(&JQ);
+    JQ6 = clone_queue(&JQ);
+
+    Queue TQ1, TQ2, TQ3, TQ4, TQ5, TQ6;
+    TQ1 = *JQ1;
+    TQ2 = *JQ2;
+    TQ3 = *JQ3;
+    TQ4 = *JQ4;
+    TQ5 = *JQ5;
+    TQ6 = *JQ6;
+
+    int* res1 = FCFS(JQ1);
+    printf("\nFCFS\n");
     for(int i=0; i<MAX_TIME; i++)
     {
-        printf("%d ", res[i]);
+        printf("%d ", res1[i]);
     }
     printf("\n");
-    
+    print_eval(&TQ1);
+
+    int* res2 = SJF(JQ2, 0);
+    printf("\nnon-preemptive SJF\n");
+    for(int i=0; i<MAX_TIME; i++)
+    {
+        printf("%d ", res2[i]);
+    }
+    printf("\n");
+    print_eval(&TQ2);
+
+    int* res3 = SJF(JQ3, 1);
+    printf("\npreemptive SJF\n");
+    for(int i=0; i<MAX_TIME; i++)
+    {
+        printf("%d ", res3[i]);
+    }
+    printf("\n");
+    print_eval(&TQ3);
+
+    int* res4 = Priority(JQ4, 0);
+    printf("\nnon-preemptive Priority\n");
+    for(int i=0; i<MAX_TIME; i++)
+    {
+        printf("%d ", res4[i]);
+    }
+    printf("\n");
+    print_eval(&TQ4);
+
+    int* res5 = Priority(JQ5, 1);
+    printf("\npreemptive Priority\n");
+    for(int i=0; i<MAX_TIME; i++)
+    {
+        printf("%d ", res5[i]);
+    }
+    printf("\n");
+    print_eval(&TQ5);
+
+    int* res6 = RR(JQ6, 2);
+    printf("\nRound Robin\n");
+    for(int i=0; i<MAX_TIME; i++)
+    {
+        printf("%d ", res6[i]);
+    }
+    printf("\n"); 
+    print_eval(&TQ6);
+
     return 0;
 }
 

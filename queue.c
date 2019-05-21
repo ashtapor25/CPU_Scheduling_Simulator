@@ -1,3 +1,5 @@
+#include <string.h>
+#include <stdlib.h>
 #include "queue.h"
 
 int arrival_cmp(Process* p1, Process* p2)
@@ -19,14 +21,6 @@ int priority_cmp(Process* p1, Process* p2)
         return (p1->arrival - p2->arrival);
     else
         return (p1->priority - p2->priority);
-}
-
-void swap(Process** p1, Process** p2)
-{
-    Process** temp = p1;
-    p1 = p2;
-    p2 = temp;
-    return;
 }
 
 void insert_queue(Queue* myqueue, Process* proc, int(*cmp)(Process*, Process*))
@@ -77,4 +71,17 @@ Process* pop_queue(Queue* myqueue, int(*cmp)(Process*, Process*))
 Process* top_queue(Queue* myqueue)
 {
     return myqueue->arr[1];
+}
+
+Queue* clone_queue(Queue* myqueue)
+{
+    Queue* newqp = malloc(sizeof(Queue));
+    for(int i=1; i<= myqueue->size; i++)
+    {
+        Process *nproc = malloc(sizeof(Process));
+        memcpy(nproc, myqueue->arr[i], sizeof(Process));
+        newqp->arr[i] = nproc;
+    }
+    newqp->size = myqueue->size;
+    return newqp;
 }
