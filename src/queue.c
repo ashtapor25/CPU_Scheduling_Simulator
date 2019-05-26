@@ -73,6 +73,21 @@ Process* top_queue(Queue* myqueue)
     return myqueue->arr[1];
 }
 
+void insert_stack(Queue* myqueue, Process* proc)
+{
+    myqueue->size++;
+    myqueue->arr[myqueue->size] = proc;
+}
+
+Process* pop_stack(Queue* myqueue)
+{
+    if(myqueue->size == 0)
+    {
+        return NULL;
+    }
+    return myqueue->arr[myqueue->size--];
+}
+
 Queue* clone_queue(Queue* myqueue)
 {
     Queue* newqp = malloc(sizeof(Queue));

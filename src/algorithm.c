@@ -395,3 +395,93 @@ int* RR(Queue* JQp, int quantum)
 
     return res;
 }
+
+int* LIFO(Queue* JQp)
+{
+    int* res = malloc(sizeof(int)*MAX_TIME);
+    Queue RQ;
+    Queue WQ;
+    Process* running = NULL;
+    RQ.size = 0;
+    WQ.size = 0;
+    int clock = 0;
+    while(clock < MAX_TIME)
+    {
+        // JP -> RQ
+        // printf("Job Queue size: %d\n", JQp->size);
+        // printf("top element arrival: %d\n", top_queue(JQp)->arrival);
+
+        while( (JQp->size >0) && (JQp->arr[1]->arrival <= clock) )
+        {
+            Process* temp = pop_queue(JQp, arrival_cmp);
+            insert_stack(&RQ, temp);
+            //printf("pid: %d inserted into RQ\n", temp->pid);
+        }
+
+        // < RQ -> Running >
+        // no process running
+        if(running == NULL)
+        {
+            if(RQ.size <= 0)
+            {
+                //res[clock] = 0; // 0 means idle
+            }
+            else
+            {
+                running = pop_stack(&RQ);
+                if(running->exec_start == -1)
+                    running->exec_start = clock;
+            }
+            
+        }
+        // current process has remaining cpu time
+        else
+        {
+
+        }
+        
+        // increment clock
+        if(running == NULL)
+        {
+            res[clock] = 0;
+        }
+        else
+        {
+            res[clock] = running->pid;
+        }
+        clock++;
+
+        // < proceed I/O >
+        for(int i=1; i <= WQ.size; i++)
+        {
+            if(--(WQ.arr[i]->io_remaining) == 0)
+            {
+                WQ.arr[i]->arrival = clock; // assigned new arrival
+                insert_stack(&RQ, WQ.arr[i]); // insert into waiting queue
+            }
+        }
+
+        // < proceed running proc >
+        if(running != NULL)
+        {
+            if(--running->cpu_remaining == 0)
+            {
+                running->exec_end = clock;
+                running = NULL;
+            }
+
+            else if( (running->io_burst > 0) && (clock - (running->exec_start) == (running->io_start)) )
+            {
+                insert_queue(&WQ, running, arrival_cmp);
+                running = NULL;
+            }
+        }
+
+    }
+    if(running!=NULL)
+    {
+        running->exec_end = MAX_TIME;
+    }
+
+    return res;
+}

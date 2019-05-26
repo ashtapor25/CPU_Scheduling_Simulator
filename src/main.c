@@ -44,28 +44,13 @@ int main()
     {
         JQs[i] = clone_queue(&JQ);
     }
-    /*
-    JQ1 = clone_queue(&JQ);
-    JQ2 = clone_queue(&JQ);
-    JQ3 = clone_queue(&JQ);
-    JQ4 = clone_queue(&JQ);
-    JQ5 = clone_queue(&JQ);
-    JQ6 = clone_queue(&JQ);
-    */
+
     // dummy queues for evaluation reference
     Queue DQs[NUM_ALGORITHM+1];
     for(int i=1; i<=NUM_ALGORITHM; i++)
     {
         DQs[i] = *JQs[i];
     }
-    /*
-    TQ1 = *JQ1;
-    TQ2 = *JQ2;
-    TQ3 = *JQ3;
-    TQ4 = *JQ4;
-    TQ5 = *JQ5;
-    TQ6 = *JQ6;
-    */
 
     int* res1 = FCFS(JQs[1]);
     printf("\n[FCFS]\n");
@@ -96,6 +81,11 @@ int main()
     printf("\n[Round Robin]\n");
     print_eval(&DQs[6]);
     print_gantt(res6);
+
+    int* res7 = LIFO(JQs[7]);
+    printf("\n[LIFO]\n");
+    print_eval(&DQs[7]);
+    print_gantt(res7);
 
     return 0;
 }
