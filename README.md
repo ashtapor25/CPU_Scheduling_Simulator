@@ -17,4 +17,6 @@ Also, please assign enough MAX_TIME to make all the processes be executed in tim
 5. Preemptie Priority
 6. Round Robin
 
-Gantt charts are displayed 50 clocks per line. 'idl' in the chart signifies that the cpu is idle.
+Gantt charts are displayed 50 clocks per line. 'idl' in the chart signifies that the cpu is idle
+
+![Sample_Result](./img/sample_result.jpg)
