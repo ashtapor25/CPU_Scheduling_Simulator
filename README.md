@@ -2,6 +2,7 @@
 This is a CPU Scheduling Simulator Project for COSE341(Operating Systems) @Korea University
 
 The program generates processes with random attributes assigned to them.
+
 Attributes : arrival, cpu_burst, io_burst, io_start(cpu time required before the i/o interrupt occurs), priority
 
 As cpu burst empirically shows a exponential distribution in real systems, I have added a mode to generate cpu_burst times following a exponential distribution. If you wish to use the exponential mode, MAX_CPU_BURST is recommended to be under 60 due to prevent overflows.
