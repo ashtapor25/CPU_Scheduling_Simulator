@@ -1,6 +1,8 @@
 #ifndef __ALGORITHM_H__
 #define __ALGORITHM_H__
 
+#define NUM_ALGORITHM 6
+
 #include "queue.h"
 
 int* FCFS(Queue* JQp);

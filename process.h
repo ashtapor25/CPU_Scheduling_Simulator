@@ -1,11 +1,11 @@
 #ifndef __PROCESS_H__
 #define __PROCESS_H__
 
-#define MAX_PROCESS_NUM 5
-#define MAX_TIME 50
+#define MAX_PROCESS_NUM 10
+#define MAX_TIME 100
 #define MAX_PRIORITY 20
-#define MAX_CPU_BURST 20
-#define MAX_IO_BURST 10
+#define MAX_CPU_BURST 10
+#define MAX_IO_BURST 5
 
 // custom process template for simulation
 typedef struct process
@@ -29,6 +29,7 @@ typedef struct process
 	int exec_end;
 } Process;
 
-Process* generate_process(int pid);
+Process* generate_process(int pid, int exp_burst);
+int expdist_generate(int max_v);
 
 #endif

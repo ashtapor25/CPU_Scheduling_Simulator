@@ -84,6 +84,10 @@ int* FCFS(Queue* JQp)
         }
 
     }
+    if(running!=NULL)
+    {
+        running->exec_end = MAX_TIME;
+    }
 
     return res;
 }
@@ -181,6 +185,10 @@ int* SJF(Queue* JQp, int preemptive)
             }
         }
 
+    }
+    if(running!=NULL)
+    {
+        running->exec_end = MAX_TIME;
     }
 
     return res;
@@ -280,6 +288,10 @@ int* Priority(Queue* JQp, int preemptive)
         }
 
     }
+    if(running!=NULL)
+    {
+        running->exec_end = MAX_TIME;
+    }
 
     return res;
 }
@@ -375,6 +387,10 @@ int* RR(Queue* JQp, int quantum)
             }
         }
 
+    }
+    if(running!=NULL)
+    {
+        running->exec_end = MAX_TIME;
     }
 
     return res;

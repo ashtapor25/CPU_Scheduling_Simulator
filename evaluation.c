@@ -26,5 +26,171 @@ void print_eval(Queue* myqueue)
 
 void print_gantt(int* res)
 {
+    int gantt_lines = MAX_TIME / 50;
+    for(int l=0; l<gantt_lines; l++)
+    {
+        int prev = -1;
+        for(int i=l*50; i<(l+1)*50; i++)
+        {
+            if(res[i]==prev)
+            {
+                printf("---");
+            }
+            else
+            {
+                printf("+---");
+            }
+            prev = res[i];
+        }
+        printf("+\n");
 
+        prev = -1;
+        for(int i=l*50; i<(l+1)*50; i++)
+        {
+            if(res[i]==prev)
+            {
+                printf("   ");
+            }
+            else
+            {
+                if(res[i]==0)
+                {
+                    printf("|idl");
+                }
+                else if(res[i] < 10)
+                {
+                    printf("| P%d", res[i]);
+                }
+                else
+                {
+                    printf("|P%d", res[i]);
+                }
+            }
+            prev = res[i];
+        }
+        printf("|\n");
+
+        prev = -1;
+        for(int i=l*50; i<(l+1)*50; i++)
+        {
+            if(res[i]==prev)
+            {
+                printf("---");
+            }
+            else
+            {
+                printf("+---");
+            }
+            prev = res[i];
+        }
+        printf("+\n");
+
+        prev = -1;
+        for(int i=l*50; i<(l+1)*50; i++)
+        {
+            if(res[i]==prev)
+            {
+                printf("   ");
+            }
+            else
+            {
+                if(i < 10)
+                {
+                    printf("%d   ", i);
+                }
+                else if(i <100)
+                {
+                    printf("%d  ", i);
+                }
+                else
+                {
+                    printf("%d ", i);
+                }
+            }
+            prev = res[i];
+        }
+        printf("%d\n", (l+1)*50);
+    }
+    int prev = -1;
+    for(int i=gantt_lines*50; i<MAX_TIME; i++)
+    {
+        if(res[i]==prev)
+        {
+            printf("---");
+        }
+        else
+        {
+            printf("+---");
+        }
+        prev = res[i];
+    }
+    if(MAX_TIME%50 !=0) printf("+\n");
+
+    prev = -1;
+    for(int i=gantt_lines*50; i<MAX_TIME; i++)
+    {
+        if(res[i]==prev)
+        {
+            printf("   ");
+        }
+        else
+        {
+            if(res[i]==0)
+            {
+                printf("|idl");
+            }
+            else if(res[i] < 10)
+            {
+                printf("| P%d", res[i]);
+            }
+            else
+            {
+                printf("|P%d", res[i]);
+            }
+        }
+        prev = res[i];
+    }
+    if(MAX_TIME%50 !=0) printf("|\n");
+
+    prev = -1;
+    for(int i=gantt_lines*50; i<MAX_TIME; i++)
+    {
+        if(res[i]==prev)
+        {
+            printf("---");
+        }
+        else
+        {
+            printf("+---");
+        }
+        prev = res[i];
+    }
+    if(MAX_TIME%50 !=0) printf("+\n");
+
+    prev = -1;
+    for(int i=gantt_lines*50; i<MAX_TIME; i++)
+    {
+        if(res[i]==prev)
+        {
+            printf("   ");
+        }
+        else
+        {
+            if(i < 10)
+            {
+                printf("%d   ", i);
+            }
+            else if(i <100)
+            {
+                printf("%d  ", i);
+            }
+            else
+            {
+                printf("%d ", i);
+            }
+        }
+        prev = res[i];
+    }
+    if(MAX_TIME%50 !=0) printf("%d\n", MAX_TIME);
+    
 }
