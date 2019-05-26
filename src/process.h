@@ -1,7 +1,7 @@
 #ifndef __PROCESS_H__
 #define __PROCESS_H__
 
-#define MAX_PROCESS_NUM 3
+#define MAX_PROCESS_NUM 5
 #define MAX_TIME 50
 #define MAX_PRIORITY 20
 #define MAX_CPU_BURST 10
