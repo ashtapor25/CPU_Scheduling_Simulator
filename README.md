@@ -10,12 +10,13 @@ Also, please assign enough MAX_TIME to make all the processes be executed in tim
 
 6 algorithms are used to simulate the cpu scheduling.
  
-1. First Come First Serverd, 
+1. First Come First Serverd 
 2. Non-preemptive Shortest Job First
 3. Preemptive Shortest Job First
 4. Non-preemptive Priority
 5. Preemptie Priority
 6. Round Robin
+7. Last In First Out
 
 Gantt charts are displayed 50 clocks per line. 'idl' in the chart signifies that the cpu is idle.
 
