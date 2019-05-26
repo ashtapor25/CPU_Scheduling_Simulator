@@ -4,18 +4,18 @@
 int main()
 {   
     srand(time(0));
-    int nums[11];
-    for(int i=1; i<=10; i++)
+    int nums[21];
+    for(int i=1; i<=20; i++)
     {
         nums[i]=0;
     }
-    for(int i=0; i<1000; i++)
+    for(int i=0; i<1024 * 1024; i++)
     {
-        int ret = expdist_generate(10);
+        int ret = expdist_generate(20);
         nums[ret]++;
     }
 
-    for(int i=1; i<=10; i++)
+    for(int i=1; i<=20; i++)
     {
         printf("%d: %d\n", i, nums[i]);
     }
